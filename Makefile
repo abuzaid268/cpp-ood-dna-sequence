@@ -8,7 +8,7 @@ INC_DIR=../include
 CC=g++
 CFLAGS= -c -pedantic -Wall -ansi -g -I$(INC_DIR)
 CXXFLAGS=$(CFLAGS)
-LDLIBS = -lgtest -lgtest_main -pthread
+LDLIBS = -lgtest -lgtest_main -pthread -g
 .PHONY: clean run gdb
 # linking
 $(TARGET): $(OBJS)

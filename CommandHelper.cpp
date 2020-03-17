@@ -82,3 +82,20 @@ string CommandHelper::stripName(string name) {
             throw InvalidInputStyle();
         return strippedName;
 }
+
+bool CommandHelper::changeSeqName(const string &new_name,const string &old_name, map<string, DNAAnalyzer *> &MapOfNames) {
+    if(MapOfNames[new_name])
+        return false;
+    else{
+        map<string, DNAAnalyzer *>::iterator it = MapOfNames.find(old_name);
+        DNAAnalyzer* temp = MapOfNames[old_name];
+        MapOfNames.erase(it);
+        MapOfNames[new_name] = temp;
+        MapOfNames[new_name]->changeName(new_name);
+        /*MapOfNames[old_name] = NULL;
+        MapOfNames.swap()*/
+        /*MapOfNames[old_name]->changeName(new_name);*/
+
+        return true;
+    }
+}

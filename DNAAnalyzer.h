@@ -23,6 +23,8 @@ public:
 
     unsigned int getMId() const;
 
+    void changeName(std::string new_name);
+
 private:
     unsigned int m_id;
     std::string m_sequenceName;

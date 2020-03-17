@@ -29,3 +29,7 @@ unsigned int DNAAnalyzer::getMId() const {
     return m_id;
 }
 
+void DNAAnalyzer::changeName(std::string new_name) {
+    m_sequenceName = new_name;
+}
+

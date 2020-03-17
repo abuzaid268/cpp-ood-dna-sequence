@@ -19,6 +19,7 @@ static map<string,command*> initMap(){
     Commands["find"] = new find_cmd();
     Commands["count"] = new count_cmd();
     Commands["findall"] = new findall_cmd();
+    Commands["rename"] = new rename_cmd();
     return Commands;
 
 }
@@ -39,9 +40,10 @@ void factory::delete_ptrs() {
     delete Commands["replace"];
     delete Commands["concat"];
     delete Commands["pair"];
-    delete Commands["pair"];
     delete Commands["len"];
     delete Commands["find"];
     delete Commands["count"];
     delete Commands["findall"];
+    delete Commands["rename"];
+
 }

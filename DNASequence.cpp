@@ -21,24 +21,7 @@ DNASequence::DNASequence(const char *sequence) {
     m_ArrayLength = (x % 4 == 0) ? x/4 : x/4 + 1;
     m_ArrayPointer = new unsigned char [m_ArrayLength + 1];
     m_ArrayPointer = Encryption::Compress(m_ArrayPointer,m_SequenceLength,sequence);
-    /*for (i = 0 ; i < x; i++) {
-        if (CheckSequenceNotValid(sequence[i])) {
-                delete[] m_ArrayPointer;
-                m_ArrayLength = 0;
-                m_ArrayPointer = NULL;
-                throw InvalidNucelotide();
-        }
-        Encryption = Encryption << shift_amount;
-        Encryption = Encryption ^ dict[sequence[i] - 'A'];
-        j++;
-        if (j == 4 || i == x-1){
-            m_ArrayPointer[k] = Encryption;
-            Encryption = 0x00;
-            j = 0;
-            k++;
-        }
-    }
-    m_ArrayPointer[m_ArrayLength] = '\0';*/
+
 }
 
 // constructor with string
@@ -50,24 +33,7 @@ DNASequence::DNASequence(std::string sequence) {
     m_ArrayLength = (x % 4 == 0) ? x/4 : x/4 + 1;
     m_ArrayPointer = new unsigned char [m_ArrayLength + 1];
     m_ArrayPointer = Encryption::Compress(m_ArrayPointer,m_SequenceLength,sequence.c_str());
-    /*for (i = 0 ; i < x; i++) {
-        if (CheckSequenceNotValid(sequence[i])) {
-            delete[] m_ArrayPointer;
-            m_ArrayLength = 0;
-            m_ArrayPointer = NULL;
-            throw InvalidNucelotide();
-        }
-        Encryption = Encryption << 2;
-        Encryption = Encryption ^ dict[sequence[i] - 'A'];
-        j++;
-        if (j == 4 || i == x-1){
-            m_ArrayPointer[k] = Encryption;
-            Encryption = 0x00;
-            j = 0;
-            k++;
-        }
-    }
-    m_ArrayPointer[m_ArrayLength] = '\0';*/
+
 }
 
 std::ostream &operator<<(std::ostream &os, const DNASequence &sequence) {

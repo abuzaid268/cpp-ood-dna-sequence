@@ -50,5 +50,8 @@ struct count_cmd: public command{
 struct findall_cmd: public command{
     void execute(vector<string>);
 };
+struct rename_cmd: public command{
+    void execute(vector<string>);
+};
 
 #endif //DNA_SEQUENCE_C___COMMAND_H

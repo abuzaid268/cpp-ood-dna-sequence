@@ -35,5 +35,7 @@ struct CommandHelper{
     static bool CheckSequenceNotValid(char x);
 
     static string toUpper(string& src);
+
+    static bool changeSeqName(const string &new_name, const string& old_name,map<string,DNAAnalyzer*> &MapOfNames);
 };
 #endif //DNA_SEQUENCE_C___COMMANDHELPER_H
