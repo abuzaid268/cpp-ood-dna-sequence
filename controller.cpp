@@ -8,14 +8,14 @@
 #include "factory.h"
 #include "command.h"
 #include "DNAExceptions.h"
-#include <memory>
+
 using namespace std;
 void controller::runDnaAnalyzer() {
     std::string input;
     vector<string> inputs;
     command *cmd = NULL;
     while (input != "quit") {
-        cout << "> cmd >>> ";
+        cout << "\033[34m"  << "> cmd >>> ";
         getline(cin, input);
         if (input != "quit") {
             inputs = Parser::getCommand(input);

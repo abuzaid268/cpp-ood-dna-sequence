@@ -26,6 +26,7 @@ struct CommandHelper{
     static char ChangeStringtoChar(string& nuc);
 
     static string stripName(string name);
+
     static DNAAnalyzer* getProperElement(map<string,DNAAnalyzer*> &MapOfNames,map<int,DNAAnalyzer*> &MapOfIDs, int ID_int, const string& name);
 
     static string getStripedID(string src);
@@ -37,5 +38,7 @@ struct CommandHelper{
     static string toUpper(string& src);
 
     static bool changeSeqName(const string &new_name, const string& old_name,map<string,DNAAnalyzer*> &MapOfNames);
+
+    static void deleteSeq(map<string,DNAAnalyzer*> &MapOfNames,map<int,DNAAnalyzer*> &MapOfIDs, int ID_int, const string& name );
 };
 #endif //DNA_SEQUENCE_C___COMMANDHELPER_H

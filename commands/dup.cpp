@@ -20,13 +20,13 @@ void dup_cmd::execute(vector<string> command_to_execute) {
         else
             nameOfSequence = CommandHelper::stripName(command_to_execute[3]);
         nameOfSequence = CommandHelper::CheckIfNameExists(nameOfSequence, MapOfNames,Original);
-        AnalyzerPtr = new DNAAnalyzer(AnalyzerPtrSrc->m_sequence.getString(), ++id, nameOfSequence);
+        AnalyzerPtr = new DNAAnalyzer(AnalyzerPtrSrc->getString(), ++id, nameOfSequence);
         CommandHelper::updateMaps(AnalyzerPtr,MapOfNames,MapOfIDs,nameOfSequence);
         std::cout << *(MapOfNames[nameOfSequence]) << std::endl;
     }
     else if (command_to_execute.size() == 2) {
         nameOfSequence = CommandHelper::CheckIfNameExists(AnalyzerPtrSrc->getMSequenceName(),MapOfNames,Original);
-        AnalyzerPtr = new DNAAnalyzer(AnalyzerPtrSrc->m_sequence.getString(),++id,nameOfSequence);
+        AnalyzerPtr = new DNAAnalyzer(AnalyzerPtrSrc->getString(),++id,nameOfSequence);
         CommandHelper::updateMaps(AnalyzerPtr,MapOfNames,MapOfIDs,nameOfSequence);
         std::cout << *(MapOfNames[nameOfSequence]) << std::endl;
     }

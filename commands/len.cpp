@@ -16,7 +16,7 @@ void len_cmd::execute(vector<string>command_to_execute){
     int ID_int = CommandHelper::ChangeStringtoInt(input_id);
     AnalyzerPtrSrc = CommandHelper::getProperElement(MapOfNames,MapOfIDs,ID_int,command_to_execute[1]);
     if (command_to_execute.size() == 2){
-        std::cout << AnalyzerPtrSrc->m_sequence.getSequenceLength() << std::endl;
+        std::cout << AnalyzerPtrSrc->getSequenceLength() << std::endl;
     }
     else{
         throw InvalidArguments();

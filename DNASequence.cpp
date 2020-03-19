@@ -175,17 +175,19 @@ int DNASequence::find(std::string target, int starting_point) const{
 
 std::vector<int> DNASequence::findAll(std::string target) const{
     std::vector<int> return_vector;
-     int result = 0,index = -1;
+     int index = -2;
      std::ostringstream stream;
     stream << *this;
     std::string str =  stream.str();
-    while(result != -1){
+    while(index != -1){
         index = str.find(target,index + 1);
-        result = index;
+        /*index = index;*/
         if (index >= 0)
             return_vector.push_back(index);
 
     }
+    if (return_vector.empty())
+        return_vector.push_back(-1);
     return return_vector;
 }
 std::vector<int> DNASequence::findAllCodons(std::string target) const{
@@ -221,27 +223,31 @@ int DNASequence::Count(std::string target) const{
 std::vector<std::string> DNASequence::FindConsensus() const {
      int beginning = 0,end,TAGindex = 0,TAAindex = 0,TGAindex = 0;
      std::string output,original = this->getString();
+     int i = 0;
+     int x = 0;
+     int y = 0;
+     int z = 0;
      std::vector<std::string> output_vector;
      std::vector<int> ATG = findAllCodons("ATG");
      std::vector<int> TAA = findAllCodons("TAA");
      std::vector<int> TAG = findAllCodons("TAG");
      std::vector<int> TGA = findAllCodons("TGA");
-    for(int i = 0; i < ATG.size(); i++){
+    for(; i < ATG.size(); i++){
         beginning = ATG[i];
         end = 0;
-        for(int x = 0; x < TAG.size(); x++){
+        for(; x < TAG.size(); x++){
             if (TAG[x] > beginning){
                 TAGindex = TAG[x];
                 break;
             }else TAGindex = 0;
         }
-        for(int y = 0; y < TAA.size(); y++){
+        for(; y < TAA.size(); y++){
             if (TAA[y] > beginning){
                 TAAindex = TAA[y];
                 break;
             } else TAAindex = 0;
         }
-        for(int z = 0; z < TGA.size(); z++){
+        for(; z < TGA.size(); z++){
             if(TGA[z] > beginning){
                 TGAindex = TGA[z];
                 break;

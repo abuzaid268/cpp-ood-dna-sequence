@@ -19,7 +19,7 @@ void slice_cmd::execute(vector<string> command_to_execute) {
     int end_int = CommandHelper::ChangeStringtoInt(command_to_execute[3]);
 
     if (command_to_execute.size() == 4) {
-        AnalyzerPtrSrc->m_sequence = AnalyzerPtrSrc->m_sequence.getSlicedString(begin_int,end_int);
+        *AnalyzerPtrSrc = AnalyzerPtrSrc->getSlicedString(begin_int,end_int);
         std::cout << *(MapOfNames[AnalyzerPtrSrc->getMSequenceName()]) << std::endl;
     }
     else if (command_to_execute.size() == 6) {
@@ -31,7 +31,7 @@ void slice_cmd::execute(vector<string> command_to_execute) {
             nameOfSequence = CommandHelper::stripName(command_to_execute[5]);
             nameOfSequence = CommandHelper::CheckIfNameExists(nameOfSequence,MapOfNames,Original);
         }
-        AnalyzerPtrDst = new DNAAnalyzer(AnalyzerPtrSrc->m_sequence.getSlicedString(begin_int,end_int),++id,nameOfSequence);
+        AnalyzerPtrDst = new DNAAnalyzer(AnalyzerPtrSrc->getSlicedString(begin_int,end_int),++id,nameOfSequence);
         CommandHelper::updateMaps(AnalyzerPtrDst,MapOfNames,MapOfIDs,nameOfSequence);
         std::cout << *(MapOfNames[nameOfSequence]) << std::endl;
     }
