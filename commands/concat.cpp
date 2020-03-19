@@ -19,14 +19,14 @@ void concat_cmd::execute(vector<string> command_to_execute) {
     int &id = DNAContainer::getID();
     int ID_int;
     int command_size = command_to_execute.size();
-    DNAAnalyzer temp;
-    temp.m_sequence = "";
+    DNASequence temp;
+    temp = "";
     if (command_to_execute[command_size - 2 ] == ":"){
         for (int i = 1; i < command_size - 2; i++){
             input_id = CommandHelper::getStripedID(command_to_execute[i]);
             ID_int = CommandHelper::ChangeStringtoInt(input_id);
             AnalyzerPtrSrc1 = (CommandHelper::getProperElement(MapOfNames,MapOfIDs,ID_int,command_to_execute[i]));
-            temp.m_sequence =  temp.m_sequence + AnalyzerPtrSrc1->m_sequence ;
+            temp = temp + AnalyzerPtrSrc1->getSequence();
             nameOfSequence += AnalyzerPtrSrc1->getMSequenceName();
             /*nameOfSequence = CommandHelper::CheckIfNameExists(nameOfSequence,MapOfNames,Concatenated);*/
         }
@@ -45,7 +45,7 @@ void concat_cmd::execute(vector<string> command_to_execute) {
             nameOfSequence = CommandHelper::stripName(command_to_execute[command_size - 1]);
             nameOfSequence = CommandHelper::CheckIfNameExists(nameOfSequence,MapOfNames,Original);
         }
-        AnalyzerPtrDst = new DNAAnalyzer(temp.m_sequence,++id,nameOfSequence);
+        AnalyzerPtrDst = new DNAAnalyzer(temp,++id,nameOfSequence);
         CommandHelper::updateMaps(AnalyzerPtrDst,MapOfNames,MapOfIDs,nameOfSequence);
         std::cout << *(MapOfNames[nameOfSequence]) << std::endl;
     }
@@ -54,12 +54,12 @@ void concat_cmd::execute(vector<string> command_to_execute) {
             input_id = CommandHelper::getStripedID(command_to_execute[i]);
             ID_int = CommandHelper::ChangeStringtoInt(input_id);
             AnalyzerPtrSrc1 = (CommandHelper::getProperElement(MapOfNames,MapOfIDs,ID_int,command_to_execute[i]));
-            temp.m_sequence =  temp.m_sequence + AnalyzerPtrSrc1->m_sequence ;
+            temp =  temp + AnalyzerPtrSrc1->getSequence() ;
         }
         input_id = CommandHelper::getStripedID(command_to_execute[1]);
         ID_int = CommandHelper::ChangeStringtoInt(input_id);
         AnalyzerPtrSrc1 = (CommandHelper::getProperElement(MapOfNames,MapOfIDs,ID_int,command_to_execute[1]));
-        AnalyzerPtrSrc1->m_sequence = temp.m_sequence;
+        *AnalyzerPtrSrc1 = temp.getString();
         nameOfSequence = AnalyzerPtrSrc1->getMSequenceName();
         std::cout << *(MapOfNames[nameOfSequence]) << std::endl;
     }

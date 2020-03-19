@@ -29,7 +29,7 @@ void findall_cmd::execute(vector<string> command_to_execute){
                     throw InvalidFindNucleotides();
                 }
             }
-            std::vector<int> indices = AnalyzerPtrSrc->m_sequence.findAll(to_find);
+            std::vector<int> indices = AnalyzerPtrSrc->findAll(to_find);
             for(int i = 0; i < indices.size(); i++){
                 std::cout << indices[i] << " ";
             }
@@ -41,8 +41,8 @@ void findall_cmd::execute(vector<string> command_to_execute){
 
             AnalyzerPtrSrc2 = CommandHelper::getProperElement(MapOfNames,MapOfIDs,ID_int2,command_to_execute[2]);
 
-            string to_find = AnalyzerPtrSrc2->m_sequence.getString();
-            std::vector<int> indices = AnalyzerPtrSrc->m_sequence.findAll(to_find);
+            string to_find = AnalyzerPtrSrc2->getString();
+            std::vector<int> indices = AnalyzerPtrSrc->findAll(to_find);
             for(int i = 0; i < indices.size(); i++){
                 std::cout << indices[i] << " ";
             }

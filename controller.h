@@ -9,7 +9,7 @@
 struct controller {
     controller(){}
 
-    void runDnaAnalyzer();
+    static void runDnaAnalyzer();
 };
 
 

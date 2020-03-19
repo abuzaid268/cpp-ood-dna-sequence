@@ -36,7 +36,7 @@ void replace_cmd::execute(vector<string> command_to_execute) {
         }
         Replacing_end = command_size - 3 ;
         Replacing_begin = 2;
-        AnalyzerPtrDst = new DNAAnalyzer(AnalyzerPtrSrc->m_sequence.getString(),++id,nameOfSequence);
+        AnalyzerPtrDst = new DNAAnalyzer(AnalyzerPtrSrc->getString(),++id,nameOfSequence);
     }
     else if (command_to_execute[command_size - 2 ] != ":"){
         Replacing_end = command_size - 1;
@@ -49,7 +49,7 @@ void replace_cmd::execute(vector<string> command_to_execute) {
     for (int i = Replacing_begin; i < Replacing_end; i+=2){
         index = CommandHelper::ChangeStringtoInt(command_to_execute[i]);
         nucleotide = CommandHelper::ChangeStringtoChar(command_to_execute[i+1]);
-        AnalyzerPtrDst->m_sequence.replace(nucleotide,index);
+        AnalyzerPtrDst->replace(nucleotide,index);
     }
     CommandHelper::updateMaps(AnalyzerPtrDst,MapOfNames,MapOfIDs,nameOfSequence);
     std::cout << *(MapOfNames[nameOfSequence]) << std::endl;

@@ -46,12 +46,11 @@ struct InvalidArguments : std::exception{
     {
         return "Number of Arguments does not match command specifications";
     }
-
 };
 struct InvalidInputStyle : std::exception{
     const char * what () const throw ()
     {
-        return "the file name does not include @";
+        return "the seq name does not include @, or an ID is not correct";
     }
 
 };

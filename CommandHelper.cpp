@@ -92,10 +92,22 @@ bool CommandHelper::changeSeqName(const string &new_name,const string &old_name,
         MapOfNames.erase(it);
         MapOfNames[new_name] = temp;
         MapOfNames[new_name]->changeName(new_name);
-        /*MapOfNames[old_name] = NULL;
-        MapOfNames.swap()*/
-        /*MapOfNames[old_name]->changeName(new_name);*/
-
         return true;
+    }
+}
+
+void CommandHelper::deleteSeq(map<string,DNAAnalyzer*> &MapOfNames,map<int,DNAAnalyzer*> &MapOfIDs, int ID_int, const string& name) {
+    if (MapOfIDs[ID_int]){
+        map<int, DNAAnalyzer *>::iterator it = MapOfIDs.find(ID_int);
+        MapOfNames.erase(it->second->getMSequenceName());
+        MapOfIDs.erase(ID_int);
+    }
+    else if (MapOfNames[CommandHelper::stripName(name)]){
+        map<string, DNAAnalyzer *>::iterator it = MapOfNames.find(CommandHelper::stripName(name));
+        MapOfIDs.erase(it->second->getMId());
+        MapOfNames.erase(it);
+    }
+    else{
+        throw InvalidSequenceName();
     }
 }

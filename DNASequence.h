@@ -10,11 +10,11 @@
 #include <ostream>
 #include <map>
 #include <vector>
-
+#include "DnaInterface.h"
 extern const unsigned char nucleotides[4];
 extern const unsigned char dict[20];
 /*extern std::map<unsigned char, unsigned char> dict;*/
-class DNASequence{
+class DNASequence: public DnaInterface{
 public:
     explicit DNASequence(const char* sequence);
 
@@ -69,6 +69,7 @@ private:
     unsigned char *m_ArrayPointer;
 
 };
+
 inline bool CheckSequenceNotValid(char x);
 
 char ReturnPair(char x);

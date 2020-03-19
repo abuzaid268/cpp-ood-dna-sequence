@@ -28,7 +28,7 @@ void count_cmd::execute(vector<string> command_to_execute){
                     throw InvalidFindNucleotides();
                 }
             }
-            std::cout << AnalyzerPtrSrc->m_sequence.Count(to_find) << std::endl;
+            std::cout << AnalyzerPtrSrc->Count(to_find) << std::endl;
         }
         else{
             string input_id2 = CommandHelper::getStripedID(command_to_execute[2]);
@@ -36,8 +36,8 @@ void count_cmd::execute(vector<string> command_to_execute){
 
             AnalyzerPtrSrc2 = CommandHelper::getProperElement(MapOfNames,MapOfIDs,ID_int2,command_to_execute[2]);
 
-            string to_find = AnalyzerPtrSrc2->m_sequence.getString();
-            std::cout << AnalyzerPtrSrc->m_sequence.Count(to_find) << std::endl;
+            string to_find = AnalyzerPtrSrc2->getString();
+            std::cout << AnalyzerPtrSrc->Count(to_find) << std::endl;
         }
     }
     else{
