@@ -14,11 +14,11 @@ A full DNA sequence might be very long - for example, the full human genome hold
 
 The Sequence is encrypted in memory, instead of having each char with a byte of memory, four nucleotides occupy 1 byte of memory, encryption goes as {"A" : 00, "C" : 01 , "G" : 10, "T": 11}
 
-##The following commands are being used to generate new sequences:
+## The following commands are being used to generate new sequences:
 
-###Sequence Creation Commands
+### Sequence Creation Commands
 The following commands are being used to generate new sequences:
-####1- new
+#### 1- new
 
 > cmd >>> new <sequence> [@<sequence_name>]
   
@@ -36,7 +36,7 @@ if this is the first sequence, it will be numbered "1" and the following will be
 [1] short_seq: ATACTGCCTGAATAC.
 
 
-####2- load
+#### 2- load
 
 > cmd >>> load <file_name>  [@<sequence_name>]
 loads the sequence from the file, assigns it with a number (ID) and a default name, if one was not provided (based on the file name, possibly postfixed with a number if the name already exists), and prints it.
@@ -45,7 +45,7 @@ For example:
 will load the sequence from the file my_dna_seq.rawdna and will print its assigned ID, its name and the sequence (no more than 40 chars; If there are more in the sequence, it prints the first 32, then an ellipsis, and then the last three ones). So, a typical output might be:
 [14] my_dna_seq: AACGTTTTTGAACACCAGTCAACAACTAGCCA...TTG
 
-####3- dup
+#### 3- dup
 > cmd >>> dup <seq> [@<new_seq_name>]
 duplicates the sequence.
 If a new name is not provided, then it will be based on the name of <seq>, suffixed by _1 (or _2, _3, ... if the name is already taken).
@@ -54,8 +54,8 @@ For example:
 will result in
 [23] conseq_1_1: ATACTGCCTGAATACAGCATAGCATTGCCT
 
-##Sequence Manipulation Commands
-###The following commands manipulate existing sequences:
+## Sequence Manipulation Commands
+### The following commands manipulate existing sequences:
 Their default behavior is to modify the source sequence in-place (that is, the original ID and name of the sequence are left the same, only its content is modified).
 
 If a colon : appears after the command's argument, then the original sequence is left untouched, and a new sequence is generated with the manipulation results.
@@ -64,7 +64,7 @@ Otherwise, if @@ instead, then the name of the new sequence is automatically gen
 
 Each command might generate a different default name.
 When a sequence is required as a source, both ID (#<seq_id>) or name (@seq_name) are acceptable, unless otherwise defined.
-####4-slice
+#### 4-slice
 > cmd >>> slice <seq> <from_ind> <to_ind> [: [@<new_seq_name>|@@]]
 Slices the sequence, so that starts in <from_ind> (0-based index) and ends in <to_ind> (inclusive).
 If @<new_seq_name is provided, the results will create a new sequence with that name.
@@ -79,7 +79,7 @@ A typical call, then, might look like:
 > cmd >>> slice #1 4 8 : @@
 [19] short_seq_s1: TGCCT
 
-####5-replace
+#### 5-replace
 > cmd >>> replace <seq> <index> <new_letter> [: [@<new_seq_name>|@@]]
 replaces the letter in the (0-based) index of <seq> by <new_letter>.
 If @<new_seq_name> is provided, the original sequence is left untouched and the result is put in a newly created sequence with that name.
@@ -90,7 +90,7 @@ For example:
 will result in the following output:
 [20] repl_seq: AGCAT
   
-####6-concat
+#### 6-concat
 > cmd >>> concat <seq_1> <seq_2> [: [@<new_seq_name>|@@]]
 concatenates <seq_2> at the end of seq_1.
 If the colon : syntax is used, then both seq_1 and seq_2 are left untouched, and the result is being put in a new sequence, named either as provided by <new_seq_name>.
@@ -110,7 +110,7 @@ will result the following:
 [22] conseq_1: ATACTGCCTGAATACAGCATAGCATTGCCT
 If no "colon argument" is used, then the command modifies only the first sequence (e.g., in the last example - #1) and the other sequences are left untouched.
 
-####7-pair
+#### 7-pair
 > cmd >>> pair <seq> [: [@<new_seq_name>|@@]]
 Create sequence <seq> with its pair sequence, that is, each T is replaced by an A (and vice versa), and each C is replaced by a G (and vice versa).
 If an auto-generate name is required (@@ is used), then it will be the original name, suffixed with _p1 (or _p2, _p3, ... if the name is already taken).
@@ -118,15 +118,15 @@ For example:> cmd >>> pair #21 : @@
 will produce:
 [24] short_seq_s1_repl_seq_c1_p1: ACGGATCGTA
   
-##Sequence Management Commands
+## Sequence Management Commands
 
-###This is a list of commands that manage existing sequences (without manipulating them).
-####8-rename
+### This is a list of commands that manage existing sequences (without manipulating them).
+#### 8-rename
 > cmd >>> rename <seq> @<new_name>
 renames the name of the sequence to the new name.
 If that name is already taken, an explanatory error message is printed.
   
-####9-del
+#### 9-del
 > cmd >>> del <seq>
 deletes that sequence.
 Before deleting it, the user is asked to confirm that:
@@ -141,18 +141,18 @@ You have typed an invalid response. Please either confirm by 'y'/'Y', or cancel 
 > confirm >>> Y
 Deleted: [23] conseq_1_1: ATACTGCCTGAATACAGCATAGCATTGCCT
 
-####10-reenum
+#### 10-reenum
 > cmd >>> reenum
 re-enumerates all the sequences, so that their numbers are 1..n, where n is the number of sequences. The original order is kept.
 
-####11-save
+#### 11-save
 > cmd >>> save <seq> [<filename>]
 saves sequence <seq> to a file.
 If <filename> is not provided, the sequence name is being used.
 The filename is suffixed by .rawdna.
   
-##Sequence Analysis Commands
-####12-len
+## Sequence Analysis Commands
+#### 12-len
 > cmd >>> len <seq_id>
 prints the length of the sequence.
 For example:
@@ -160,7 +160,7 @@ If sequence #34 is AAATGTGATG, then it will look like this:
 > cmd >>> len #34
 10
 
-####13-find
+#### 13-find
 The find command finds a sub-sequence within a sequence.
 It has two flavors:
 1. Takes an expressed sub-sequence:
@@ -177,13 +177,13 @@ If seq #11 is as appears above, and sequence #25 is CTTGGA, it might look like:
 > cmd >>> find #11 #25
 4
 
-####14-count
+#### 14-count
 count works in a similar way to find, only it returns the number of instances of the sub-sequence within the larger sequence.
 Like find, it has two flavors, one that takes an expressed sub-sequence, and one that refers an existing sub-sequence:
 > cmd >>> count <seq> <expressed_sub_seq>
 > cmd >>> count <seq_to_find_in> <seq_to_be_found>
 
-####15-findall
+#### 15-findall
 > cmd >>> findall <seq> <expressed_sub_seq>
 > cmd >>> findall <seq_to_find_in> <seq_to_be_found>
 work very similar to find, only they return all the indices where the sub-sequence appears.
